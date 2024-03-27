@@ -1,7 +1,9 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Create Next App",
@@ -10,8 +12,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body className={inter.className}>
+          <ToastContainer
+            theme="light"
+            position="top-right"
+            autoClose={2000}
+            closeOnClick
+            pauseOnHover={true}
+          />
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
