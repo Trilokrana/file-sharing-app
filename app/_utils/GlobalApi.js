@@ -5,7 +5,6 @@ const safeStringify = (data) => {
   return JSON.stringify(data, (key, value) => {
     if (typeof value === "object" && value !== null) {
       if (cache.has(value)) {
-        // Circular reference found, discard key
         return;
       }
       cache.add(value);
@@ -14,9 +13,8 @@ const safeStringify = (data) => {
   });
 };
 
-// Use the safeStringify function to serialize data before sending it
 const SendEmail = (data) => {
-  axios.post("/api/send", safeStringify(data));
+  return axios.post("/api/send", safeStringify(data));
 };
 
 export default { SendEmail };

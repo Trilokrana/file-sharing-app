@@ -49,7 +49,7 @@ const TopHeader = () => {
           onClose={toggleSideNav}
           className="absolute top-0 right-0 h-full bg-white shadow-md z-50"
         >
-          {/* Content of the SideNavBar */}
+    
         </SideNavBar>
       )}
 

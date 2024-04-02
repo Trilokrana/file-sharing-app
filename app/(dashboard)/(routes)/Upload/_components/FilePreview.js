@@ -5,7 +5,7 @@ const FilePreview = ({ file, removeFile }) => {
     <div>
       <div
         role="alert"
-        className="rounded-xl border border-gray-100 bg-white p-4 mt-5"
+        className="rounded-xl border border-gray-400 bg-white p-4 mt-5 shadow-md "
       >
         <div className="flex items-start gap-4">
           <span className="text-green-600">

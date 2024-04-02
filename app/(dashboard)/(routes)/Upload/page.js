@@ -66,7 +66,7 @@ const Upload = () => {
         userName: user?.fullName,
         password: "",
         id: docId,
-        shortUrl: process.env.NEXT_PUBLIC_BASE_URL + docId,
+        shortUrl: process.env.NEXT_PUBLIC_BASE_URL +"/T/"+ docId,
       });
       setFileDocId(docId);
 

@@ -10,8 +10,9 @@ export async function POST(req) {
     const data = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: "ranatrilok1234@gmail.com",
-      subject: response?.userName + " Hi, we have shared a file you!!", // Fixed subject spelling
-      react: <EmailTemplate response={response} />, // Pass response as a prop
+      subject: `${response?.userName} Hi, we have shared a file with you!`, // Fixed subject spelling
+      react: EmailTemplate({ response }),
+      // Pass response as a prop
     });
 
     return NextResponse.json({ data }); // Wrapped data in an object

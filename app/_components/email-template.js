@@ -18,19 +18,12 @@ const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "";
 
-export const EmailTemplate = ({
-  response,
-  loginDate,
-  loginDevice,
-  loginLocation,
-  loginIp,
-  imageUrl, // Add imageUrl prop for the image
-}) => {
+export const EmailTemplate = ({ response, loginDate, loginIp }) => {
   const formattedDate = new Intl.DateTimeFormat("en", {
     dateStyle: "long",
     timeStyle: "short",
   }).format(loginDate);
-
+  console.log("Response Object:", response);
   return (
     <Html>
       <Head />
@@ -38,7 +31,7 @@ export const EmailTemplate = ({
       <Body style={main}>
         <Container>
           <Section style={logo}>
-            <Img src={`${baseUrl}/static/yelp-footer.png`} />
+            <Img src={"./logo.svg"} />
           </Section>
 
           <Section style={content}>
@@ -69,27 +62,14 @@ export const EmailTemplate = ({
                     textAlign: "center",
                   }}
                 >
-                  We noticed a recent login to your Yelp account.
+                  We have shared the file with you..
                 </Heading>
 
                 <Text style={paragraph}>
                   <b>Time: </b>
                   {formattedDate}
                 </Text>
-                {/* Check if response exists and has properties before displaying */}
-                {response && (
-                  <>
-                    <Text style={{ ...paragraph, marginTop: -5 }}>
-                      <b>FileName: {response.fileName}</b>
-                    </Text>
-                    <Text style={{ ...paragraph, marginTop: -5 }}>
-                      <b>FileSize: {response.fileSize}</b>
-                    </Text>
-                    <Text style={{ ...paragraph, marginTop: -5 }}>
-                      <b>FileType: {response.fileType}</b>
-                    </Text>
-                  </>
-                )}
+
                 <Text
                   style={{
                     color: "rgb(0,0,0, 0.5)",
@@ -108,11 +88,14 @@ export const EmailTemplate = ({
                   If this wasn't you or if you have additional questions, please
                   see our support page.
                 </Text>
+                <Text style={{ ...paragraph, marginTop: -5 }}>
+                  If you want to download the File , please click on the button below.
+                </Text>
               </Column>
             </Row>
             <Row style={{ ...boxInfos, paddingTop: "0" }}>
               <Column style={containerButton} colSpan={2}>
-                <Button href={response.shortUrl} style={button}>
+                <Button href={response?.shortUrl} style={button}>
                   Click here to download
                 </Button>
               </Column>
@@ -120,11 +103,7 @@ export const EmailTemplate = ({
           </Section>
 
           <Section style={containerImageFooter}>
-            <Img
-              style={image}
-              width={620}
-              src={`${baseUrl}/static/yelp-footer.png`}
-            />
+            <Img style={image} width={620} src={"./logo.svg"} />
           </Section>
 
           <Text

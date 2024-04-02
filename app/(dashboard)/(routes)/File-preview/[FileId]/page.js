@@ -20,7 +20,7 @@ const FilePreview = ({ params }) => {
       console.log("Document data:", docSnap.data());
       setFile(docSnap.data());
     } else {
-      // docSnap.data() will be undefined in this case
+    
       console.log("No such document!");
     }
   };
