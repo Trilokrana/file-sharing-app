@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import EmailTemplate from "./../../_components/email-template"; // Removed curly braces around EmailTemplate
+import EmailTemplate from "./../../_components/email-template"; 
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -10,12 +10,12 @@ export async function POST(req) {
     const data = await resend.emails.send({
       from: "onboarding@resend.dev",
       to: "ranatrilok1234@gmail.com",
-      subject: `${response?.userName} Hi, we have shared a file with you!`, // Fixed subject spelling
+      subject: `${response?.userName} Hi, we have shared a file with you!`, 
       react: EmailTemplate({ response }),
-      // Pass response as a prop
+    
     });
 
-    return NextResponse.json({ data }); // Wrapped data in an object
+    return NextResponse.json({ data }); 
   } catch (error) {
     console.error("Error encountered:", error);
     return NextResponse.json({
